@@ -1,12 +1,16 @@
+import { IRolesRepository } from './../../repositories/IRolesrepository';
 import { AppError } from '@shared/errors/AppError';
-import { RolesRepository } from 'src/roles/repositories/RolesRepository';
+import { inject, injectable } from 'tsyringe';
 
 type deleteUseCaseParams = {
   id: string;
 };
 
+@injectable()
 export class DeleteRoleUseCase {
-  constructor(private roleRepository: RolesRepository) {}
+  constructor(
+    @inject('RolesRepository') private roleRepository: IRolesRepository,
+  ) {}
 
   async execute({ id }: deleteUseCaseParams): Promise<void> {
     const roleExists = await this.roleRepository.findById(id);
