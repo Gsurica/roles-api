@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import express from 'express';
 import 'express-async-errors';
 import cors from 'cors';
@@ -11,6 +12,6 @@ app.get('/', (request, response) => {
   return response.json({ message: 'Olá, Dev!' });
 });
 
-app.listen(3333, () => {
-  console.log('Server started on port 3333');
+app.listen(process.env.PORT, () => {
+  console.log(`Server started on port ${process.env.PORT}!`);
 });
