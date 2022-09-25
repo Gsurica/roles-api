@@ -1,3 +1,4 @@
+import { usersRoutes } from '@roles/http/routes/user.routes';
 import { Router } from 'express';
 import { rolesRouter } from 'src/roles/http/routes/roles.routes';
 
@@ -8,5 +9,6 @@ routes.get('/', (request, response) => {
 });
 
 routes.use('/roles', rolesRouter);
+routes.use('/users', usersRoutes);
 
 export { routes };
