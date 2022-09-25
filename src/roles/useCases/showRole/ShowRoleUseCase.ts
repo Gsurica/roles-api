@@ -10,7 +10,7 @@ type ShowRoleParams = {
 @injectable()
 export class ShowRoleUseCase {
   constructor(
-    @inject('RoleRepository') private rolesRepository: IRolesRepository,
+    @inject('RolesRepository') private rolesRepository: IRolesRepository,
   ) {}
 
   async execute({ id }: ShowRoleParams): Promise<Role> {

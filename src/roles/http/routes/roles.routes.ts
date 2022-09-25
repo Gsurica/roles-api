@@ -1,12 +1,19 @@
-import { showRoleController } from './../../useCases/showRole/index';
-import { createRoleController } from './../../useCases/createRole/index';
-import { listRoleController } from 'src/roles/useCases/ListRole';
-import { updateRoleController } from 'src/roles/useCases/updateRole';
-import { deleteRoleController } from 'src/roles/useCases/deleteRole';
+import { DeleteRoleController } from './../../useCases/deleteRole/DeleteRoleController';
+import { UpdateRoleController } from './../../useCases/updateRole/UpdateRoleController';
+import { ShowRoleController } from './../../useCases/showRole/ShowRoleController';
+import { ListRolesController } from './../../useCases/ListRole/ListRoleController';
+import { CreateRoleController } from './../../useCases/createRole/CreateRoleController';
+import { container } from 'tsyringe';
 import { Request, Response, Router } from 'express';
 import { celebrate, Joi, Segments } from 'celebrate';
 
 const rolesRouter = Router();
+
+const createRoleController = container.resolve(CreateRoleController);
+const listRoleController = container.resolve(ListRolesController);
+const showRoleController = container.resolve(ShowRoleController);
+const updateRoleController = container.resolve(UpdateRoleController);
+const deleteRoleController = container.resolve(DeleteRoleController);
 
 rolesRouter.post(
   '/',
