@@ -1,10 +1,13 @@
+import { ListUsersController } from './../../useCases/ListUsers/ListUsersController';
 import { CreateUserController } from './../../useCases/createUser/CreateUserController';
 import { Router } from 'express';
 import { celebrate, Joi, Segments } from 'celebrate';
 import { container } from 'tsyringe';
 
 const usersRoutes = Router();
+
 const createUserController = container.resolve(CreateUserController);
+const listUserController = container.resolve(ListUsersController);
 
 usersRoutes.post(
   '/',
@@ -19,6 +22,19 @@ usersRoutes.post(
   }),
   (request, response) => {
     return createUserController.handle(request, response);
+  },
+);
+
+usersRoutes.get(
+  '/',
+  celebrate({
+    [Segments.QUERY]: {
+      page: Joi.number(),
+      limit: Joi.number(),
+    },
+  }),
+  (request, response) => {
+    return listUserController.handle(request, response);
   },
 );
 
