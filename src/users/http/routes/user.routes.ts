@@ -1,3 +1,4 @@
+import { CreateLoginController } from './../../useCases/createLogin/CreateLoginController';
 import { ListUsersController } from './../../useCases/ListUsers/ListUsersController';
 import { CreateUserController } from './../../useCases/createUser/CreateUserController';
 import { Router } from 'express';
@@ -8,6 +9,7 @@ const usersRoutes = Router();
 
 const createUserController = container.resolve(CreateUserController);
 const listUserController = container.resolve(ListUsersController);
+const createLoginController = container.resolve(CreateLoginController);
 
 usersRoutes.post(
   '/',
@@ -35,6 +37,19 @@ usersRoutes.get(
   }),
   (request, response) => {
     return listUserController.handle(request, response);
+  },
+);
+
+usersRoutes.post(
+  '/login',
+  celebrate({
+    [Segments.BODY]: {
+      email: Joi.string().required().email(),
+      password: Joi.string().required(),
+    },
+  }),
+  (request, response) => {
+    return createLoginController.handle(request, response);
   },
 );
 

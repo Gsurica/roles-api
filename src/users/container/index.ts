@@ -1,3 +1,4 @@
+import { CreateLoginController } from './../useCases/createLogin/CreateLoginController';
 import { CreateUserController } from './../useCases/createUser/CreateUserController';
 import { UsersRepository } from './../repositories/UsersRepository';
 import { IUsersRepository } from './../repositories/IUsersRepositories';
@@ -11,3 +12,4 @@ container.registerSingleton<IUsersRepository>(
 
 container.registerSingleton('CreateUserController', CreateUserController);
 container.registerSingleton('ListUsersController', ListUsersController);
+container.registerSingleton('CreateLoginController', CreateLoginController);

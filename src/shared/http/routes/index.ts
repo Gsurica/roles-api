@@ -1,4 +1,4 @@
-import { usersRoutes } from '@roles/http/routes/user.routes';
+import { usersRoutes } from '@users/http/routes/user.routes';
 import { Router } from 'express';
 import { rolesRouter } from 'src/roles/http/routes/roles.routes';
 
