@@ -1,6 +1,6 @@
 import { AppError } from './../../../shared/errors/AppError';
 import { hash } from 'bcryptjs';
-import { User } from '@roles/entities/User';
+import { User } from '@users/entities/User';
 import { IRolesRepository } from './../../../roles/repositories/IRolesrepository';
 import { IUsersRepository } from './../../repositories/IUsersRepositories';
 import { inject, injectable } from 'tsyringe';
