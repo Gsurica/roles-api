@@ -1,3 +1,4 @@
+import { isAuthenticated } from './../../../shared/http/middlewares/isAutheticated';
 import { DeleteRoleController } from './../../useCases/deleteRole/DeleteRoleController';
 import { UpdateRoleController } from './../../useCases/updateRole/UpdateRoleController';
 import { ShowRoleController } from './../../useCases/showRole/ShowRoleController';
@@ -14,6 +15,8 @@ const listRoleController = container.resolve(ListRolesController);
 const showRoleController = container.resolve(ShowRoleController);
 const updateRoleController = container.resolve(UpdateRoleController);
 const deleteRoleController = container.resolve(DeleteRoleController);
+
+rolesRouter.use(isAuthenticated);
 
 rolesRouter.post(
   '/',

@@ -3,6 +3,10 @@ import { AppError } from '@shared/errors/AppError';
 import { Secret, verify } from 'jsonwebtoken';
 import auth from 'src/config/auth';
 
+type JwtPayloadProps = {
+  sub: string;
+};
+
 export const isAuthenticated = (
   request: Request,
   response: Response,
@@ -12,7 +16,9 @@ export const isAuthenticated = (
   if (!authHeader) throw new AppError('Failed to verify access token!', 401);
   const token = authHeader.replace('Bearer ', '');
   try {
-    verify(token, auth.jwt.secret as Secret);
+    const decodedToken = verify(token, auth.jwt.secret as Secret);
+    const { sub } = decodedToken as JwtPayloadProps;
+    request.user = { id: sub };
   } catch {
     throw new AppError('Invalid authentication token', 401);
   }
