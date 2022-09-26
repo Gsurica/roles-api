@@ -9,7 +9,8 @@
     "lint:fix": "eslint . --fix",
     "dev": "ts-node-dev -r tsconfig-paths/register --inspect --transpile-only --ignore-watch nodu_modules src/shared/http/server.ts",
     "typeorm": "ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
-    "build": "rimraf dist && npx tsc"
+    "build": "rimraf dist && npx tsc",
+    "seed:admin": "ts-node-dev -r tsconfig-paths/register src/shared/typeorm/seeds/admin.ts"
   },
   "keywords": [],
   "author": "",
