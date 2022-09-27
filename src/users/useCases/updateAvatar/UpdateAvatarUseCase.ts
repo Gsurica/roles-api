@@ -12,7 +12,7 @@ type UpdateAvatarDTO = {
 };
 
 @injectable()
-export class CreateUserUseCase {
+export class UpdateAvatarUseCase {
   constructor(
     @inject('UsersRepository') private usersRepository: IUsersRepository,
   ) {}
