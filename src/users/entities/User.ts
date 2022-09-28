@@ -7,7 +7,7 @@ import {
 } from 'typeorm';
 import { v4 as uuidv4 } from 'uuid';
 import { Role } from 'src/roles/entities/Role';
-import { Exclude } from 'class-transformer';
+import { Exclude, Expose } from 'class-transformer';
 
 @Entity('users')
 export class User {
@@ -37,6 +37,14 @@ export class User {
 
   @CreateDateColumn()
   created_at: Date;
+
+  @Expose({ name: 'avatar_url' })
+  getAvataUrl(): string | null {
+    if (!this.avatar) {
+      return null;
+    }
+    return `${process.env.AVATAR_URL}/${this.avatar}`;
+  }
 
   constructor() {
     if (!this.id) {
